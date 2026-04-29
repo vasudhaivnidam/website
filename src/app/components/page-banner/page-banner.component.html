@@ -1,0 +1,23 @@
+<div class="relative bg-gradient-to-br from-orange-900 via-orange-800 to-yellow-700 pt-24 pb-14 overflow-hidden">
+  <!-- Decorative circles -->
+  <div class="absolute top-0 left-0 w-64 h-64 rounded-full bg-white/5 -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-white/5 translate-x-1/4 translate-y-1/4"></div>
+  <div class="absolute top-6 right-12 text-white/10 text-8xl font-serif hidden lg:block">ॐ</div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Breadcrumb -->
+    <nav class="flex justify-center items-center gap-2 text-orange-300 text-sm mb-5">
+      <a routerLink="/" class="hover:text-white transition-colors">Home</a>
+      <span class="text-orange-500">›</span>
+      <span class="text-white font-medium">{{ title }}</span>
+    </nav>
+
+    @if (emoji) {
+      <div class="text-5xl mb-4">{{ emoji }}</div>
+    }
+    <h1 class="text-3xl md:text-5xl font-bold text-white mb-3">{{ title }}</h1>
+    @if (subtitle) {
+      <p class="text-orange-200 text-base md:text-lg max-w-2xl mx-auto">{{ subtitle }}</p>
+    }
+  </div>
+</div>

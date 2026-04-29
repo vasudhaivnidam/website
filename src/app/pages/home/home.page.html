@@ -1,0 +1,32 @@
+<app-hero />
+
+<!-- Quick Navigation Cards -->
+<section class="py-20 bg-amber-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-orange-600 font-semibold text-sm uppercase tracking-widest mb-2">Explore</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">What We Offer</h2>
+      <div class="w-16 h-1 bg-orange-500 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      @for (card of cards; track card.title) {
+        <div [class]="'bg-white rounded-2xl border-t-4 ' + card.color + ' p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col'">
+          <div class="text-4xl mb-4">{{ card.icon }}</div>
+          <h3 class="text-gray-800 font-bold text-lg mb-2">{{ card.title }}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed flex-1 mb-5">{{ card.desc }}</p>
+          <a [routerLink]="card.link"
+            [class]="'block text-center text-white text-sm font-semibold py-2.5 px-4 rounded-xl transition-colors ' + card.btnColor">
+            Explore →
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Tagline Banner -->
+<section class="bg-gradient-to-r from-orange-700 to-yellow-600 py-16 text-center">
+  <p class="text-yellow-200 font-serif text-2xl md:text-3xl mb-2">वसुधैव कुटुम्बकम्</p>
+  <p class="text-white/80 text-base">"The whole world is one family"</p>
+</section>

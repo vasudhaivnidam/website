@@ -1,0 +1,80 @@
+<section id="gallery" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="text-orange-600 font-semibold text-sm uppercase tracking-widest mb-2">Memories</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Photo Gallery</h2>
+      <div class="w-16 h-1 bg-orange-500 mx-auto rounded-full mb-4"></div>
+      <p class="text-gray-600 max-w-xl mx-auto text-sm">
+        Glimpses of our activities, events, and the smiling faces we serve.
+      </p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+      @for (cat of categories; track cat) {
+        <button
+          (click)="filterByCategory(cat)"
+          [class]="'px-4 py-2 rounded-full text-sm font-medium transition-all ' +
+            (activeCategory === cat
+              ? 'bg-orange-600 text-white shadow-md'
+              : 'bg-white text-gray-600 border border-gray-200 hover:border-orange-300 hover:text-orange-600')">
+          {{ getCategoryLabel(cat) }}
+        </button>
+      }
+    </div>
+
+    <!-- Gallery Grid -->
+    @if (filteredPhotos.length > 0) {
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        @for (photo of filteredPhotos; track photo.id) {
+          <div
+            class="group relative aspect-square overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-lg transition-all duration-300"
+            (click)="openLightbox(photo)">
+            <img
+              [src]="photo.filename"
+              [alt]="photo.caption"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 400 400\'%3E%3Crect width=\'400\' height=\'400\' fill=\'%23FED7AA\'/%3E%3Ctext x=\'50%25\' y=\'45%25\' text-anchor=\'middle\' dy=\'.3em\' font-size=\'60\' fill=\'%23C2410C\'%3E🏛️%3C/text%3E%3Ctext x=\'50%25\' y=\'65%25\' text-anchor=\'middle\' font-size=\'16\' fill=\'%23C2410C\'%3EGallery%3C/text%3E%3C/svg%3E'">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+              <p class="text-white text-xs font-medium leading-tight">{{ photo.caption }}</p>
+            </div>
+            <div class="absolute top-2 right-2 bg-orange-600 text-white text-xs px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+              {{ photo.category }}
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="text-center py-20 text-gray-400">
+        <p class="text-5xl mb-4">📸</p>
+        <p class="text-base">No photos in this category yet.</p>
+      </div>
+    }
+  </div>
+
+  <!-- Lightbox -->
+  @if (selectedPhoto) {
+    <div
+      class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+      (click)="closeLightbox()">
+      <div class="relative max-w-3xl w-full" (click)="$event.stopPropagation()">
+        <button
+          (click)="closeLightbox()"
+          class="absolute -top-10 right-0 text-white/80 hover:text-white text-3xl font-light z-10">
+          ✕
+        </button>
+        <img
+          [src]="selectedPhoto.filename"
+          [alt]="selectedPhoto.caption"
+          class="w-full rounded-xl shadow-2xl max-h-[75vh] object-contain"
+          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'400\' viewBox=\'0 0 400 400\'%3E%3Crect width=\'400\' height=\'400\' fill=\'%23FED7AA\'/%3E%3Ctext x=\'50%25\' y=\'45%25\' text-anchor=\'middle\' dy=\'.3em\' font-size=\'60\' fill=\'%23C2410C\'%3E🏛️%3C/text%3E%3C/svg%3E'">
+        <div class="bg-white/10 backdrop-blur-sm rounded-b-xl px-4 py-3 text-white text-center">
+          <p class="font-medium">{{ selectedPhoto.caption }}</p>
+          <span class="text-xs text-white/60 capitalize">{{ selectedPhoto.category }}</span>
+        </div>
+      </div>
+    </div>
+  }
+</section>

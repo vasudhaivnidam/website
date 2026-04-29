@@ -1,0 +1,59 @@
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- Brand -->
+      <div>
+        <a routerLink="/" class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full p-1 bg-white flex items-center justify-center text-white font-bold text-lg">
+            <img src="logo-1.png" alt="logo">
+          </div>
+          <div>
+            <p class="font-bold text-white leading-tight">Vasudhaivnidam Foundation</p>
+            <p class="text-gray-400 text-xs">वसुधैव कुटुम्बकम्</p>
+          </div>
+        </a>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          Serving society through education, culture, fitness, and spiritual growth.
+          Together, we make the world one family.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-bold text-white mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          @for (link of links; track link.path) {
+            <li>
+              <a [routerLink]="link.path"
+                class="text-gray-400 hover:text-orange-400 text-sm transition-colors">
+                → {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="font-bold text-white mb-4">Our Services</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li>🎒 School Fees for Poor Children</li>
+          <li>⛺ Aryaveerdal Summer Camp</li>
+          <li>🧘 Yoga &amp; Meditation</li>
+          <li>🥢 Lathi Practice</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-gray-700/50 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-gray-500 text-xs">
+        © {{ year }} Vasudhaivnidam Foundation. All rights reserved.
+      </p>
+      <p class="text-gray-600 text-xs">
+        Registered Non-Profit Organisation · 80G Tax Benefits Available
+      </p>
+    </div>
+  </div>
+</footer>
