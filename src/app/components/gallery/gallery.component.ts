@@ -25,7 +25,7 @@ export class GalleryComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<GalleryPhoto[]>('/gallery/gallery.json').subscribe({
+    this.http.get<GalleryPhoto[]>('gallery/gallery.json').subscribe({
       next: (data) => {
         this.photos = data;
         this.filteredPhotos = data;
