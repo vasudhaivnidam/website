@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href /website/",
+    "postbuild": "mkdir -p  docs && cp -r dist/vasudhaivnidam-foundation/browser/ docs/",
     "watch": "ng build --watch --configuration development",
     "dev": "ng build --watch --configuration development & npx serve dist/vasudhaivnidam-foundation/browser -p 4210",
     "test": "ng test"
